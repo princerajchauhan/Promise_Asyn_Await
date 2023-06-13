@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: black;
+    color: white;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+h1{
+    position: relative;
+    font-size: 3.5em;
+    color: black;
+}
+h1::before{
+    content: attr(data-text);
+    position: absolute;
+    color: #fff;
+    left: 0;
+    width: 0;
+    height: 100%;
+    white-space: nowrap;
+    border-right: 4px solid lime;
+    border-bottom: 4px solid red;
+    overflow: hidden;
+    filter: drop-shadow(0 0 15px white);
+    animation: animate 6s linear infinite;
+}
+
+@keyframes animate {
+    0%{
+        width: 0;
+    }
+    70%{
+        width: 103%;
+    }
+}
+
+.questions{
+    margin: 40px;
+}
+
+.ques{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+p{
+    font-size: 20px;
+    display: flex;
+    gap: 10px;
+}
+p span{
+    font-weight: bold;
+    text-shadow: 0 0 10px white;
+}
+
+.ans{
+    margin-left: 70px;
+}
+.exp{
+    font-size: 1.1em;
+    color: aqua;
+}
+button{
+    padding: 9px 12px;
+    font-size: 1em;
+    border-radius: 5px;
+    background-color: burlywood;
+    color: white;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: lightblue;
+    color: red;
+    box-shadow: 0 0 10px 0 white;
+    border-color: lightblue;
+}
+
+.seeCode{
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+.text{
+    display: flex;
+    gap: 10px;
+}
+
+.code{
+    display: none;
+}

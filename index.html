@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise Async Await</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1 data-text="Promise Async Await">Promise Async Await</h1>
+    </header>
+
+    <div class="questions">
+        <!-- ************************ Question 1 ********************************** -->
+        <div class="ques">
+            <p><span>Q1.</span> Write one example explaining how you can write a callback function.</p>
+            <div class="ans seeCode">
+                <button onclick="seeHide1(this)">See Code</button>
+                <pre class="code" id="code1">
+
+function greet(name, callback) {
+    console.log('Hi' + ' ' + name);
+    callback();
+}
+function callMe() {
+    console.log('I am callback function');
+}
+greet('Prince', callMe);
+                </pre>
+            </div>
+            <div class="ans text"><span class="exp">Explaination: </span>
+                In the above program, there are two functions. While calling the greet() function, two arguments (a
+                string value and a function) are passed.
+                The callMe() function is a callback function.
+            </div>
+            <hr style="margin: 5px 0 30px 0; background-color: lime;" size="3px">
+        </div>
+
+        <!-- ************************ Question 2 ********************************** -->
+        <div class="ques">
+            <p><span>Q2. </span> Write a callback function to print numbers from 1 to 7, in which 1 should be printed
+                after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on.
+                Explain callback hell.
+                Numbers 1 2 3 4 5 6 7</p>
+            <div class="ans seeCode">
+                <button onclick="seeHide2(this)">See Code</button>
+                <pre class="code" id="code2">
+
+setTimeout(()=>{
+    console.log(1)
+    setTimeout(()=>{
+        console.log(2)
+        setTimeout(()=>{
+            console.log(3)
+            setTimeout(()=>{
+                console.log(4)
+                setTimeout(()=>{
+                    console.log(5)
+                    setTimeout(()=>{
+                        console.log(6)
+                        setTimeout(()=>{
+                            console.log(7)
+                        },7000)
+                    },6000)
+                },5000)
+            },4000)
+        },3000)
+    },2000)
+},1000)
+                </pre>
+            </div>
+            <div class="ans text"><span class="exp">Explaination: </span>
+                Callback hell is a phenomenon that happens when multiple callbacks are nested on top of each other.
+            </div>
+            <hr style="margin: 5px 0 30px 0; background-color: lime;" size="3px">
+        </div>
+
+        <!-- ************************ Question 3 ********************************** -->
+        <div class="ques">
+            <p><span>Q3. </span> Write the promise function to print numbers from 1 to 7, in which 1 should be printed
+                after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on.
+                Numbers 1 2 3 4 5 6 7</p>
+            <div class="ans seeCode">
+                <button onclick="seeHide3(this)">See Code</button>
+                <pre class="code" id="code3">
+
+for(let i=1; i<=7; i++){
+    function promiseFunc(){
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(i)
+            }, 1000*(i*(i+1)/2))
+        })
+    }
+    promiseFunc().then(data => console.log(data))
+}
+                </pre>
+            </div>
+            <hr style="margin: 5px 0 30px 0; background-color: lime;" size="3px">
+        </div>
+
+        <!-- ************************ Question 4 ********************************** -->
+        <div class="ques">
+            <p><span>Q4.</span> Create a promise function accepting an argument, if yes is passed to the function then
+                it should go to resolved state and print Promise Resolved, and if nothing is passed
+                then it should go to reject the state and catch the error and print Promise Rejected.</p>
+            <div class="ans seeCode">
+                <button onclick="seeHide4(this)">See Code</button>
+                <pre class="code" id="code4">
+
+function createPromise(yesNo){
+    return new Promise((resolve, reject) => {
+        if(yesNo.toLowerCase() === "yes"){
+            resolve("Promise resolved")
+        }
+        else{
+            reject("Promise rejected")
+        }
+    })
+}
+
+createPromise("Yes")
+.then(data => console.log(data))
+.catch(err => console.log(err))
+                </pre>
+            </div>
+
+            <hr style="margin: 5px 0 30px 0; background-color: lime;" size="3px">
+        </div>
+
+        <!-- ************************ Question 5 ********************************** -->
+        <div class="ques">
+            <p><span>Q5.</span> Create examples to explain callback function</p>
+            <div class="ans seeCode">
+                <button onclick="seeHide5(this)">See Code</button>
+                <pre class="code" id="code5">
+
+function print(callback) {  
+    callback();
+}
+function greet(){
+    console.log("Hello World !!")
+}
+print(greet)
+                </pre>
+            </div>
+            <div class="ans text"><span class="exp">Explaination: </span>
+                The function takes another function as a parameter and calls it inside. This is valid in
+                JavaScript and we call it a “callback”. So a function that is passed to another function as a parameter
+                is a callback function.
+            </div>
+            <hr style="margin: 5px 0 30px 0; background-color: lime;" size="3px">
+        </div>
+
+        <!-- ************************ Question 6 ********************************** -->
+        <div class="ques">
+            <p><span>Q6.</span> Create examples to explain callback hell function</p>
+            <div class="ans seeCode">
+                <button onclick="seeHide6(this)">See Code</button>
+                <pre class="code" id="code6">
+
+function callHell(){
+    console.log("hello")
+}
+setTimeout(() => {
+    callHell()
+    setTimeout(()=>{
+        callHell()
+        setTimeout(()=>{
+            callHell()
+        },3000)
+    },2000)
+},1000)
+                </pre>
+            </div>
+            <div class="ans text"><span class="exp">Explaination: </span>
+                Callback hell is a phenomenon that happens when multiple callbacks are nested on top of each other. The
+                two common ways of escaping the callback heare are by using promises and async/await.
+            </div>
+            <hr style="margin: 5px 0 30px 0; background-color: lime;" size="3px">
+        </div>
+
+        <!-- ************************ Question 7 ********************************** -->
+        <div class="ques">
+            <p><span>Q7.</span> Create examples to explain promises function.</p>
+            <div class="ans seeCode">
+                <button onclick="seeHide7(this)">See Code</button>
+                <pre class="code" id="code7">
+
+function promiseFunc(ans){
+    return new Promise((resolve, reject) => {
+        if(ans){
+            resolve("Promise resolved")
+        }
+        else{
+            reject("Promises Rejected")
+        }
+    })
+}
+
+promiseFunc(false)
+.then(data => console.log(data))
+.catch(err => console.log(err))
+                </pre>
+            </div>
+            <div class="ans text"><span class="exp">Explaination: </span>
+                The Promise object represents the eventual completion (or failure) of an asynchronous operation and its
+                resulting value.
+            </div>
+            <hr style="margin: 5px 0 30px 0; background-color: lime;" size="3px">
+        </div>
+
+        <!-- ************************ Question 8 ********************************** -->
+        <div class="ques">
+            <p><span>Q8.</span> Create examples to explain async await function.</p>
+            <div class="ans seeCode">
+                <button onclick="seeHide8(this)">See Code</button>
+                <pre class="code" id="code8">
+
+function hello(){
+    return new Promise((resolve,reject) => {
+        setTimeout(() => {
+            resolve("Hey, this is async await" )
+        },1000)
+    })
+}
+async function result(){
+    const string = await hello()
+    console.log(string)
+}
+result()
+                </pre>
+            </div>
+            <div class="ans text"><span class="exp">Explaination: </span>
+                "async and await make promises easier to write". async makes a function return a Promise, await makes a
+                function wait for a Promise
+            </div>
+                <hr style="margin: 5px 0 30px 0; background-color: lime;" size="3px">
+        </div>
+
+        <!-- ************************ Question 9 ********************************** -->
+        <div class="ques">
+            <p><span>Q9.</span> Create examples to explain promise.all function.</p>
+            <div class="ans seeCode">
+                <button onclick="seeHide9(this)">See Code</button>
+                <pre class="code" id="code9">
+
+const promise1 = new Promise((resolve,reject) => {
+setTimeout(()=>{
+    resolve("Promise 1 is done")
+},2000)
+})
+const promise2 = new Promise((resolve,reject) => {
+setTimeout(()=>{
+    resolve("Promise 2 is done")
+},1000)
+})
+Promise.all([promise1, promise2])
+.then((result)=>{
+console.log("All promises are fulfilled", result)
+})
+            </pre>
+            </div>
+            <div class="ans text"><span class="exp">Explaination: </span>
+                The Promise.all() static method takes an iterable of promises as input and returns a single Promise.
+                This returned promise fulfills when all of the input's promises fulfill (including when an empty
+                iterable is passed), with an array of the fulfillment values. It rejects when any of the input's
+                promises rejects, with this first rejection reason.
+            </div>
+            <hr style="margin: 5px 0 30px 0; background-color: lime;" size="3px">
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
